@@ -1,0 +1,64 @@
+﻿@model List<Sentimeter.Models.RiskSentiAnalysi>
+@{
+    ViewBag.Title = "RiskDashboard";
+}
+<style type="text/css">
+    .Table {
+        display: table;
+    }
+
+    .Title {
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    .Heading {
+        display: table-row;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .RowHeading {
+        display: table-row;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .Row {
+        display: table-row;
+    }
+
+    .Cell {
+        display: table-cell;
+        border: solid;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .Columnheading {
+        display: table-cell;
+        border: solid;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="Row">
+    <div class="Row">
+        </div>
+        <div class="Row">
+            @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+            {
+                if (msg.AnalysisCode == -2)
+                {
+                    <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                }
+            }
+
+        </div>
+    </div>

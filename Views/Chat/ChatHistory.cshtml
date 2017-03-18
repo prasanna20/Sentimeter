@@ -1,0 +1,55 @@
+﻿@model MVC_JQuery_Chat.Models.ChatModel
+<div id="Lobby">
+    <p>
+        <b>@Model.Users.Count users interested in property</b></p>
+    @foreach (MVC_JQuery_Chat.Models.ChatModel.ChatUser user in Model.Users)
+    {
+        @user.NickName<br />
+    }
+</div>
+<div id="ChatHistory">
+    @foreach (MVC_JQuery_Chat.Models.ChatModel.ChatMessage msg in Model.ChatHistory)
+    {
+        <p>
+            <table>
+                <tr>
+                    <td>
+                                                @if (msg.ByUser != null)
+                                                {
+                                                    if (msg.sentimeter == -2)
+                                                    {
+                                                        
+                                                            <b>@(msg.ByUser.NickName + ":")</b> @msg.Message <br><span style="color: Red"> @("Sentiment Analysis : High Risk " )  </span> <br>  @("Positivity : " + @msg.positivity)
+                                                        
+                                                                }
+                                                                else if (msg.sentimeter == -1)
+                                                                {
+                                                                <b>@(msg.ByUser.NickName + ":")</b> @msg.Message <br>   <span style="color: Red">@("Sentiment Analysis : Risk " )  </span> <br>  @("Positivity : " + @msg.positivity)
+                                                                }
+                                                                else if (msg.sentimeter == 0)
+                                                                {
+                                                                <b>@(msg.ByUser.NickName + ":")</b> @msg.Message <br><span style="color: grey"> @("Sentiment Analysis : Neutral " )  </span>  <br>  @("Positivity : " + @msg.positivity)
+                                                                }
+                                                                else if (msg.sentimeter == 1)
+                                                                {
+                                                                <b>@(msg.ByUser.NickName + ":")</b> @msg.Message <br><span style="color: green"> @("Sentiment Analysis : Preferable " )  </span>  <br>  @("Positivity : " + @msg.positivity)
+    }
+    else if (msg.sentimeter == 2)
+    {
+    <b>@(msg.ByUser.NickName + ":")</b> @msg.Message <br> @("Sentiment Analysis : Wow " ) <br>                                                        <span style="color: green">
+                                                            @("Positivity : " + @msg.sentimeter) </span>
+                                                            }
+
+                                                            @*<span style="color: Red">@msg.Message</span>*@
+                                                            }
+</td>
+                </tr>
+                <tr>
+                    <td><i>@msg.When</i></td>
+                </tr>
+            </table>
+           
+           
+        </p>
+    }
+</div>

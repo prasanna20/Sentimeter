@@ -1,0 +1,137 @@
+﻿@model Sentimeter.Models.RiskSentiAnalysi
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryui")
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="../../Scripts/Chat.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <title>Risk dashboard</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .Table {
+            display: table;
+        }
+
+        .Title {
+            display: table-caption;
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .Heading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .RowHeading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .Row {
+            display: table-row;
+        }
+
+        .Cell {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .Columnheading {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-weight: bold;
+        }
+
+        
+
+        #container {
+            height: 80%;
+            width: 80%;
+            position: absolute;
+            top: 10%;
+            left: 30%;
+            min-width: 320px;
+            background-color: white;
+            /*box-shadow: 0 8px 4px -4px rgba(0,0,0,0.4);*/
+        }
+    </style>
+
+</head>
+<body id="container">
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    @using (Html.BeginForm("updateComments", "Risk", FormMethod.Post))
+                    {
+                        <table class="table table-bordered" width="100%">
+                            <tr>
+                                @Html.HiddenFor(model => model.id)
+                                @Html.HiddenFor(model => model.CurrentStatus)
+                                @Html.HiddenFor(model => model.positivity)
+                                @Html.HiddenFor(model => model.AnalysisCode)
+                                @Html.HiddenFor(model => model.AssetId)
+                                <td >
+                                    <b> Asset Id</b>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.AssetId)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.Comment)</b>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Comment)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> Current Status</b>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.CurrentStatus)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @Html.Label("Previous Comment ") </b>
+                                </td>
+                                <td>
+                                    @Html.EditorFor(model => model.Comment)
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" value="Update" class="btn btn-success btn-lg" /></td>
+                            </tr>
+                        </table>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>

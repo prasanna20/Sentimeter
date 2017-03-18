@@ -1,0 +1,470 @@
+﻿@model List<Sentimeter.Models.RiskSentiAnalysi>
+@{
+    ViewBag.Title = "RiskDashboard";
+}
+    <!doctype html>
+<html lang="en">
+
+<head style="width:100%">
+    <meta charset="utf-8" />
+    <title>Risk dashboard</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+        <table style="text-align:center;">
+            <tr style="text-align:center;">
+                <td style="text-align:center;padding-left:280px">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="http://10.50.224.58/Subscription/XomeLogo.png" alt="Xome Logo" style="padding-right:30rem" />
+                    </a>
+                </td>
+            </tr>
+           
+            <tr>
+                <td style="text-align:center; font-weight:bold;font-size:large;font-family:Calibri">
+                    Manager Dashboard
+                </td>
+            </tr>
+           
+            <tr>
+                <td style="text-align:center; font-size:small;font-family:Calibri">
+                    Welcome Cooper
+                </td>
+            </tr>
+
+        </table>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+    <style type="text/css">
+        .Table {
+            display: table;
+        }
+
+        .Title {
+            display: table-caption;
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        body, html {
+            height: 100%;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+            .Heading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .RowHeading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .Row {
+            display: table-row;
+        }
+
+        .Cell {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .Columnheading {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-weight:bold;
+        }
+        .td_neural {
+            background-color: #e0f7fa;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .td_highRisk {
+            background-color: #ef9a9a;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .td_Risk {
+            background-color: #ffcdd2;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .td_wow {
+            background-color: #b2ebf2;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .td_pref {
+            background-color: #bbdefe;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .wrapper {
+            padding: 20px 0;
+        }
+
+        #container {
+            height: 80%;
+            width: 80%;
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            min-width: 320px;
+            background-color: white;
+            /*box-shadow: 0 8px 4px -4px rgba(0,0,0,0.4);*/
+        }
+    </style>
+    
+</head>
+<body  id="container">
+    
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    
+
+                    <table class="table table-bordered" width="100%">
+                        <thead>
+                            <tr >
+                                <th>  </th>
+                                <th style="text-align:center">High Risk</th>
+                                <th style="text-align:center">Risk</th>
+                                <th style="text-align:center">Neutral</th">
+                                <th style="text-align:center">Preferable</th>
+                                <th style="text-align:center">Wow</th>
+                        </thead>
+                        <tr >
+                            <td>Pending occupancy</td>
+                            <td class="td_highRisk">
+                            @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                            {
+                                if (msg.CurrentStatus == "Pending occupancy" && msg.AnalysisCode == -2)
+                                {
+                                    <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                }
+                            }</td>
+                            <td class="td_Risk">
+                            @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                            {
+                                if (msg.CurrentStatus == "Pending occupancy" && msg.AnalysisCode == -1)
+                                {
+                                    <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                }
+                            }</td>
+                            <td  class="td_neural">
+                            @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                            {
+                                if (msg.CurrentStatus == "Pending occupancy" && msg.AnalysisCode == 0)
+                                {
+                                    <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                }
+                            }</td>
+                            <td class="td_pref">
+                            @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                            {
+                                if (msg.CurrentStatus == "Pending occupancy" && msg.AnalysisCode == 1)
+                                {
+                                    <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                }
+                            }</td>
+                            <td class="td_wow">
+                            @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                            {
+                                if (msg.CurrentStatus == "Pending occupancy" && msg.AnalysisCode == 2)
+                                {
+                                    <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                }
+                            }</td>
+
+                        </tr>
+                        <tr>
+                            <td>Pre-Marketing</td>
+                            <td class="td_highRisk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pre-Marketing" && msg.AnalysisCode == -2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_Risk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pre-Marketing" && msg.AnalysisCode == -1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_neural">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pre-Marketing" && msg.AnalysisCode == 0)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_pref">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pre-Marketing" && msg.AnalysisCode == 1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_wow">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pre-Marketing" && msg.AnalysisCode == 2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Eviction</td>
+                            <td class="td_highRisk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Eviction" && msg.AnalysisCode == -2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_Risk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Eviction" && msg.AnalysisCode == -1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td  class="td_neural">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Eviction" && msg.AnalysisCode == 0)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_pref">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Eviction" && msg.AnalysisCode == 1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_wow">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Eviction" && msg.AnalysisCode == 2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td>Marketing</td>
+                            <td class="td_highRisk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Marketing" && msg.AnalysisCode == -2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_Risk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Marketing" && msg.AnalysisCode == -1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td  class="td_neural">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Marketing" && msg.AnalysisCode == 0)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_pref">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Marketing" && msg.AnalysisCode == 1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_wow">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Marketing" && msg.AnalysisCode == 2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pending</td>
+                            <td class="td_highRisk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pending" && msg.AnalysisCode == -2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_Risk">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pending" && msg.AnalysisCode == -1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td  class="td_neural">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pending" && msg.AnalysisCode == 0)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_pref">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pending" && msg.AnalysisCode == 1)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                            <td class="td_wow">
+                                @foreach (Sentimeter.Models.RiskSentiAnalysi msg in Model)
+                                {
+                                    if (msg.CurrentStatus == "Pending" && msg.AnalysisCode == 2)
+                                    {
+                                        <p>@Html.ActionLink(msg.AssetId.ToString(), "Details", new { id = msg.id })</p><br>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                @*<div class="col-md-4">
+                    <b>High Risk</b><br />
+                    @{
+                        Html.RenderPartial("_highRisk", Model);
+                    }
+                </div>*@
+                </div>
+
+            </div>
+        </div>
+   
+
+    
+             
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div id='myModalContent'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+@section scripts
+{
+                        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                        <script src="~/Scripts/bootstrap.js"></script>
+                        <script src="~/Scripts/bootstrap.min.js"></script>
+                        <script>
+
+                            var TeamDetailPostBackURL = '/Risk/Details';
+                            $(function () {
+                                $(".anchorDetail").click(function () {
+                                    debugger;
+                                    var $buttonClicked = $(this);
+                                    //var id = $buttonClicked.attr('data-id');
+                                    var options = {  keyboard: true };
+                                    $.ajax({
+                                        type: "GET",
+                                        url: TeamDetailPostBackURL,
+                                        contentType: "application/json; charset=utf-8",
+                                        data: { "Id": 5 },
+                                        datatype: "json",
+                                        success: function (data) {
+                                            $('#myModalContent').html(data);
+                                            $('#myModal').modal(options);
+                                            $('#myModal').modal('show');
+                                        },
+                                        error: function () {
+                                            alert("Dynamic content load failed.");
+                                        }
+                                    });
+                                });
+                                //$("#closebtn").on('click',function(){
+                                //    $('#myModal').modal('hide');
+
+                                $("#closbtn").click(function () {
+                                    $("#myModal").removeClass("in");
+                                    $(".modal-backdrop").remove();
+                                    $("#myModal").hide();
+                                });
+                            });
+
+                        </script>
+
+                    }
+
+
+
+                    @Ajax.ActionLink("Login", "Index", new { thisUserLoggedOn = "" }, new AjaxOptions { UpdateTargetId = "container", OnFailure = "LoginOnFailure", OnSuccess = "LoginOnSuccess" }, new { @id = "LoginButton", @style = "visibility:hidden;" })
+</body>
+
+
+
+</html>

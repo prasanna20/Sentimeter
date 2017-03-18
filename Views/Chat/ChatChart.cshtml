@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Top Trendings</title>
+    <div class="container header-content" style="align-content:center">
+        <div class="navbar-header">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="http://10.50.224.58/Subscription/XomeLogo.png" alt="Xome Logo" />
+
+            </a>
+
+        </div>
+
+    </div>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+       </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+    <script>
+
+        var barChartData =
+            {
+                labels: [@Html.Raw(ViewBag.AssetID)],
+                datasets: [{
+                    label: '',
+                    backgroundColor: [
+                        "#f990a7",
+                        "#aad2ed",
+                        "#9966FF",
+                        "#99e5e5",
+                        "#f7bd83",
+                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.AnalysisCode]
+                }]
+            };
+
+            window.onload = function () {
+                var ctx1 = document.getElementById("barcanvas").getContext("2d");
+                window.myBar = new Chart(ctx1,
+                    {
+                        type: 'bar',
+                        data: barChartData,
+                        options:
+                            {
+                                title:
+                                {
+                                    display: true,
+                                    text: "Top Trending Assets"
+                                },
+                                responsive: true,
+                                maintainAspectRatio: true
+                            }
+                    });
+            }
+    </script>
+</head>
+<body>
+    <div style="padding-left: 20rem;text-align: center;width:50%;height:50%;margin-top: 4rem;">
+        <canvas id="barcanvas"></canvas>
+    </div>
+</body>
+</html>

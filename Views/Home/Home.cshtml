@@ -1,0 +1,164 @@
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SentiMeter</title>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container header-content">
+            <div class="navbar-header">
+                <a href="@Url.Action("Index", "Chat")">
+                    <img src="http://10.50.224.58/Subscription/XomeLogo.png" alt="Xome Logo" />
+
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="../../Scripts/Chat.js"></script>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        div, body, table, p {
+            font-family: Verdana;
+            font-size: medium;
+            color: white;
+        }
+
+        #container {
+            height: 80%;
+            width: 80%;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            min-width: 320px;
+            background-color: white;
+            box-shadow: 0 8px 4px -4px rgba(0,0,0,0.4);
+        }
+
+        .box {
+            display: inline-block;
+            margin: 10px;
+            padding: 8px 15px;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 4px;
+            transition: all 0.3s ease-out;
+            /*box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0,0,0,0.3), 0 0 4px 1px rgba(0,0,0,0.2); Font styles */
+            text-decoration: none;
+            text-shadow: 0 1px rgba(255,255,255,0.7);
+        }
+
+        #Error {
+            width: 80%;
+            left: 10%;
+            position: absolute;
+            height: 10%;
+            top: 91%;
+            color: Red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #LastRefresh {
+            display: inline;
+            position: absolute;
+            font-size: xx-small;
+            text-align: right;
+            top: 7%;
+            left: 10%;
+            width: 80%;
+        }
+
+        #YourNickname {
+            display: inline;
+            position: absolute;
+            font-size: medium;
+            font-weight: bold;
+            text-align: left;
+            top: 7%;
+            left: 10%;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="YourNickname">
+    </div>
+    <div id="LastRefresh">
+    </div>
+    <div id="container">
+        <div class="box" id="LoginPanel">
+            <table>
+                <tr>
+                    <td>
+                        <img src="~/img/riskmeter.png" />
+                    </td>
+                    <td style="width:40px">  </td>
+                    <td >
+                        <img src="~/img/chat.png" />
+                    </td>
+                    <td style="width:50px">  </td>
+                    <td>
+                        <img src="~/img/trending.png" />
+                    </td>
+                    </tr>
+                    <tr>
+                        
+                        <td style="text-align:center">
+                            <p>
+                                @Html.ActionLink(
+                                    linkText: "Risk Meter",
+                                    actionName: "INDEX",
+                                    controllerName: "Risk",
+                                    routeValues: null,
+                                    htmlAttributes: null
+                                )
+                            </p>
+                        </td>
+                        <td style="width:50px" >  </td>
+                    <td>
+                        <p>
+                            @Html.ActionLink(
+                        linkText: "Chat Functionality",
+                        actionName: "INDEX",
+                        controllerName: "Chat",
+                        routeValues: null,
+                        htmlAttributes: null
+)
+                        </p>
+                    </td> 
+                        <td style="width:50px">  </td>
+                    <td>
+                        <p>
+                            @Html.ActionLink(
+                                    linkText: "Trending assets",
+                                    actionName: "ChatChart",
+                                    controllerName: "Chat",
+                                    routeValues: null,
+                                    htmlAttributes: null
+                                )
+                        </p>
+                    </td>
+                    
+                </tr>
+            </table>
+            
+           
+         
+        </div>
+    </div>
+    <div id="Error">
+    </div>
+  </body>
+
